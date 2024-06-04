@@ -1,0 +1,130 @@
+.footer {
+    width: 100%;
+    background-color: #1B1B1B;
+
+    .footer__top *, .footer__bottom * {
+        color: #fff;
+    }
+}
+
+.footer__menu {
+    display: flex;
+    justify-content: space-between;
+
+    .menu-item {
+        &:not(:last-child) {
+            margin-bottom: 16px;
+        }
+
+        a {
+            font-size: 16px;
+            font-weight: 400;
+
+            @include response-min($laptop-landscape + 1) {
+                &:hover {
+                    font-weight: 800;
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    .social_items__list {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 -6px;
+
+        .social_item {
+            width: 40px;
+            height: 40px;
+            margin: 0 6px;
+
+            img {
+                object-fit: cover;
+                filter: brightness(1) invert(0);
+                transition: 0.3s ease;
+            }
+
+            @include response-min($laptop-landscape) {
+                &:hover {
+                    img {
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.footer__column {
+    min-width: 150px;
+}
+
+.footer__title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.contact_info__item {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+
+    img {
+        width: 40px;
+        height: 40px;
+        margin-right: 16px;
+        transition: 0.3s ease;
+    }
+
+    @include response-min($laptop-landscape + 1) {
+        &:hover {
+            img {
+                transform: scale(1.1);
+            }
+
+            .contact_info__title {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.contact_info__title {
+    font-size: 16px;
+}
+
+.footer__top {
+    border-bottom: 1px solid #383838;
+
+    &.desktop_version {
+        padding: 80px 0;
+    }
+
+    &.mobile_version {
+        padding: 24px 0;
+    }
+}
+
+.footer__bottom {
+    text-align: center;
+    padding: 24px 0;
+    font-size: 14px;
+}
+
+.footer {
+    @include response-max($laptop-landscape) {
+        padding: 0 0 61px;
+
+        .social_items__list {
+            width: 100%;
+            justify-content: space-around;
+
+            .social_item {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+}

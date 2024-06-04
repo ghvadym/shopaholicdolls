@@ -1,0 +1,52 @@
+//Core
+@import "core/variables";
+@import "core/mixins";
+
+//Parts
+@import "pages/contact-us/contact-form";
+@import "pages/contact-us/map";
+@import "pages/contact-us/contact-info";
+@import "pages/contact-us/socials";
+
+.contact-us {
+  padding-bottom: 60px;
+
+  @include response-min($laptop-landscape + 1) {
+    padding-bottom: 100px;
+  }
+
+  h1 {
+    text-align: center;
+  }
+}
+
+.contact-us__row {
+  width: 100%;
+
+  @include response-min($laptop-landscape + 1) {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+}
+
+.contact-us__col {
+  width: 100%;
+
+  &:last-child {
+    padding-top: 20px;
+  }
+
+  @include response-min($laptop-landscape + 1) {
+    &:first-child {
+      max-width: 545px;
+    }
+  }
+
+  @include response-min($laptop-landscape + 1) {
+    &:last-child {
+      margin-left: 100px;
+      padding-top: 0;
+    }
+  }
+}

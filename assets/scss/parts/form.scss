@@ -1,0 +1,153 @@
+.form_newsletter {
+    background-color: #E6E6E6;
+    padding: 0 0 60px 0 !important;
+}
+
+.newsletter__content {
+    display: flex;
+    align-items: center;
+    padding-top: 55px;
+}
+
+.newsletter__body {
+    width: 100%;
+}
+
+.newsletter__col {
+    max-width: 50%;
+    width: 100%;
+}
+
+.newsletter__title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 68px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: $color-main;
+
+    span {
+        font-size: 1.3em;
+        line-height: 0.5;
+        color: $color-main;
+    }
+}
+
+.newsletter__form {
+    width: 100%;
+    margin-bottom: 12px;
+
+    &._spinner {
+        &:before {
+            background: none;
+        }
+
+        &:after {
+            width: 20px;
+            height: 20px;
+        }
+    }
+}
+
+.newsletter__form_body {
+    display: flex;
+    width: 100%;
+
+    .form-row {
+        margin-bottom: 0;
+    }
+}
+
+.newsletter__input {
+    background: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 17px;
+
+    &::placeholder {
+        color: $color-secondary;
+    }
+}
+
+.newsletter__text {
+    p {
+        font-size: 16px;
+        color: $color-main;
+    }
+
+    a {
+        text-decoration: underline;
+        color: $color-main;
+
+        @include response-min($laptop-landscape + 1) {
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.newsletter__btn {
+    background: transparent;
+    padding: 0;
+    width: 53px;
+    height: 53px;
+    border: 1px solid $color-main;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    margin-left: 8px;
+
+    img {
+        width: 20px;
+        height: 20px;
+        transition: 0.3s ease-in-out;
+    }
+
+    @include response-min($laptop-landscape + 1) {
+        &:hover {
+            img {
+                filter: invert(1);
+            }
+        }
+    }
+
+    &:active, &:focus {
+        img {
+            filter: invert(1);
+        }
+    }
+}
+
+.newsletter_mobile {
+    padding-top: 0;
+
+    .newsletter__text {
+        font-size: 14px;
+    }
+
+    .newsletter__title {
+        font-size: 24px;
+    }
+
+    .newsletter__content {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 45px;
+
+        & > *:not(:last-child) {
+            margin-bottom: 16px;
+        }
+    }
+}
+
+html[lang='pl-PL'] {
+    .footer_desktop {
+        .newsletter__title {
+            font-size: 50px;
+        }
+    }
+}

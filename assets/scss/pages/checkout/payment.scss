@@ -1,0 +1,205 @@
+.payment-methods {
+    background: none !important;
+    border: none;
+    padding: 0;
+    margin-bottom: 20px;
+
+    @include response-min($laptop-portrait) {
+        .checkout_field__label {
+            margin-top: 40px;
+        }
+    }
+}
+
+.payment-method {
+    border-radius: 4px;
+    border: 1px solid #A5A5A5;
+    background: $color-bg-main;
+    display: block;
+    padding: 16px;
+    @include pointer;
+
+    &:not(:last-child) {
+        margin-bottom: 20px;
+    }
+
+    input {
+        display: none;
+
+        &:checked {
+            & ~ .payment-method__heading .payment-method__box {
+                &:after {
+                    opacity: 1;
+                }
+            }
+
+            & ~ .payment-method__inner {
+                display: block;
+            }
+        }
+    }
+
+    &.payment_chosen {
+        border-color: $color-main;
+
+        .payment-method__label {
+            color: $color-main;
+            font-weight: 700;
+        }
+    }
+
+    button[type='submit'] {
+        width: 100% !important;
+        float: none !important;
+        margin-bottom: 0 !important;
+        display: block !important;
+    }
+}
+
+.payment-method__heading {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    line-height: 160%;
+    font-weight: 500;
+    color: #000;
+}
+
+.payment-method__box {
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    border: 1px solid #1A0A1B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -2px;
+    margin-right: 16px;
+    transition: all .3s ease-in-out;
+
+    &:after {
+        content: '';
+        width: 13px;
+        height: 13px;
+        background: $pink;
+        border-radius: 50%;
+        opacity: 0;
+        transition: 0.3s ease-in-out;
+    }
+}
+
+.payment-method__inner {
+    font-size: 14px;
+    line-height: 160%;
+    color: #5C6061;
+    display: none;
+    margin-top: 15px;
+    transition: all .3s ease-in-out;
+
+    ol, ul {
+        padding-left: 16px;
+    }
+}
+
+.payment-method__label {
+    font-size: 16px;
+    font-weight: 500;
+    color: $color-grey;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    img, svg {
+        height: 25px;
+    }
+
+    span {
+        flex-shrink: 0;
+    }
+}
+
+.wc-stripe-gateway-desc {
+    margin-bottom: 10px;
+}
+
+.payment-method__checkboxes {
+    margin: 20px 0;
+    display: block;
+}
+
+.payment-method__checkbox {
+    display: block;
+
+    &:not(:last-child) {
+        margin-bottom: 22px;
+    }
+
+    input {
+        display: block;
+    }
+}
+
+.save-source-checkbox {
+    border: 1px solid $color-main !important;
+    border-radius: 2px !important;
+    width: 20px !important;
+    height: 20px !important;
+
+    &:after {
+        background: url('../img/check.svg') center / 15px no-repeat !important;
+        border: none !important;
+        transform: none !important;
+        width: 15px !important;
+        height: 15px !important;
+        top: 2px !important;
+        left: 1px !important;
+        opacity: 0;
+        transition: all .3s ease-in-out;
+    }
+}
+
+.wc-stripe-save-source {
+    label.checkbox {
+        & > input[type='checkbox'] {
+            display: block;
+            width: 110px !important;
+            top: -3px;
+            @include pointer;
+
+            &:checked {
+                & ~ .save-source-checkbox {
+                    @include pointer;
+
+                    &:after {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.save-source-label {
+    margin-left: 15px !important;
+    font-size: 16px;
+    font-weight: 400;
+    color: $color-main;
+    line-height: 1;
+}
+
+.wc-stripe-blik-code-container {
+    padding-top: 15px;
+    text-align: center;
+}
+
+.wc-stripe-blik-code {
+    flex-wrap: nowrap !important;
+
+    .form-row {
+        width: auto !important;
+    }
+
+    input {
+        display: inline-block !important;
+    }
+}

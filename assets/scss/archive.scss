@@ -1,0 +1,10 @@
+//Core
+@import "core/variables";
+@import "core/mixins";
+
+//Archive
+@import "pages/archive/filter";
+@import "pages/archive/posts";
+@import "pages/archive/breadcrumbs";
+@import "pages/archive/head-section";
+@import "pages/archive/pagination";

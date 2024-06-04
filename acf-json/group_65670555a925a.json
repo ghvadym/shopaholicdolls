@@ -1,0 +1,66 @@
+{
+    "key": "group_65670555a925a",
+    "title": "Menu navigation",
+    "fields": [
+        {
+            "key": "field_6567055886d9b",
+            "label": "Menu options",
+            "name": "menu_options",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "menu_options_1": "Menu options 1",
+                "menu_options_2": "Menu options 2",
+                "menu_options_3": "Menu options 3",
+                "menu_options_4": "Menu options 4",
+                "menu_options_5": "Menu options 5",
+                "menu_options_6": "Menu options 6",
+                "menu_options_7": "Menu options 7",
+                "menu_options_8": "Menu options 8",
+                "menu_options_brands": "Brands"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "translations": "copy_once",
+            "allow_null": 1,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "nav_menu_item",
+                "operator": "==",
+                "value": "location\/main_header"
+            }
+        ],
+        [
+            {
+                "param": "nav_menu_item",
+                "operator": "==",
+                "value": "location\/main_header___pl"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1710234356
+}

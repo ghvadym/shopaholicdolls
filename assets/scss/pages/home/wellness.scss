@@ -1,0 +1,98 @@
+.wellness__list {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 12px;
+
+  @media (min-width: $laptop-portrait + 1) {
+    grid-gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.wellness__item {
+  border-radius: 4px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.10), 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+  max-height: 150px;
+
+  @media (min-width: $laptop-portrait + 1) {
+    max-height: 383px;
+  }
+
+  @media (min-width: $laptop-landscape + 1) {
+
+
+    &:hover {
+      & > .wellness__item_img img {
+        transform: scale(1.1);
+      }
+
+      & > .wellness__item-info-wrap .wellness__item_link {
+        transform: scale(1.2);
+      }
+
+      & > .wellness__item-gradient {
+        opacity: 0;
+        transition: 0.3s ease;
+      }
+    }
+  }
+}
+
+.wellness__item-gradient {
+  background: linear-gradient(180deg, rgba(251, 251, 251, 0.50) 0%, rgba(251, 251, 251, 0.00) 100%);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: 0.3s ease;
+}
+
+.wellness__item_img {
+  max-height: 150px;
+
+  @media (min-width: $laptop-portrait + 1) {
+    max-height: 383px;
+  }
+
+  img {
+    transition: 0.3s ease;
+    max-height: 150px;
+    object-fit: cover;
+
+    @media (min-width: $laptop-portrait + 1) {
+      max-height: 383px;
+      aspect-ratio: 4/7;
+    }
+  }
+}
+
+.wellness__item-info-wrap {
+  width: 100%;
+  padding: 0 15px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.wellness__item_title {
+  font-size: 24px;
+  text-transform: lowercase;
+
+  @media (min-width: $laptop-landscape + 1) {
+    font-size: 32px;
+  }
+}
+
+.wellness__item_link {
+  font-size: 14px;
+  transition: 0.3s ease;
+}

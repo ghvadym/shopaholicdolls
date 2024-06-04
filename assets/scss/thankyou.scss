@@ -1,0 +1,234 @@
+//Core
+@import "core/variables";
+@import "core/mixins";
+
+.woocommerce-order-received {
+    .woocommerce-info, .wc-block-components-notice-banner {
+        display: none;
+    }
+
+    .checkout__auth_form {
+        display: block;
+    }
+
+    .woocommerce {
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .woocommerce-order {
+        max-width: 1250px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 30px;
+
+        @include response-max($laptop-portrait - 1) {
+            padding: 0 16px;
+        }
+    }
+}
+
+.order__top {
+    background: #F1F1F1;
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.order__top_content {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.order__top_actions {
+    margin-top: 16px;
+}
+
+.order__top_img {
+    width: 48px;
+    height: 48px;
+    @include image-contain;
+    margin-bottom: 15px;
+}
+
+.order__top_title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 5px;
+
+    @include response-max($laptop-landscape - 1) {
+        font-size: 16px;
+    }
+}
+
+.order__top_subtitle {
+    font-size: 14px;
+
+    @include response-max($laptop-landscape - 1) {
+        font-size: 12px;
+    }
+}
+
+.order__title {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'Karla', sans-serif;
+    text-transform: uppercase;
+
+    @include response-max($laptop-landscape - 1) {
+        font-size: 20px;
+    }
+}
+
+.order_summary__title {
+    @include response-max($laptop-landscape - 1) {
+        font-size: 20px;
+        text-align: center;
+        width: 100%;
+    }
+}
+
+.order__row {
+    @media (min-width: $laptop-landscape) {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+}
+
+.order__col {
+    width: 100%;
+
+    @media (min-width: $laptop-landscape) {
+        max-width: calc(50% - 10px);
+    }
+}
+
+.order__content {
+    width: 100%;
+    border-radius: 4px;
+    background: #FBFBFB;
+    overflow: hidden;
+    padding: 24px;
+    box-shadow: $box-shadow;
+    margin-bottom: 32px;
+
+    @include response-max($laptop-landscape - 1) {
+        padding: 12px 16px;
+    }
+
+    @include response-max($mobile) {
+        margin-bottom: 24px;
+    }
+}
+
+.order__info_row {
+    &:not(:last-child) {
+        margin-bottom: 32px;
+    }
+}
+
+.order__info {
+    border-radius: 4px;
+    background: $color-bg-main;
+}
+
+.order__info_title {
+    margin-bottom: 8px;
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+
+    @include response-max($laptop-landscape - 1) {
+        font-size: 16px;
+    }
+}
+
+.order__info_value {
+    p {
+        color: $color-grey;
+        font-size: 16px;
+        font-weight: 400;
+
+        &:not(:last-child) {
+            margin-bottom: 8px;
+        }
+
+        @include response-max($laptop-landscape - 1) {
+            font-size: 14px;
+        }
+    }
+}
+
+.order__buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 60px;
+
+    @include response-max($mobile) {
+        margin-bottom: 24px;
+    }
+}
+
+.order__form {
+    padding: 24px;
+    border-radius: 4px;
+    border: 1px solid #949393;
+}
+
+.order__form_title {
+    font-size: 20px;
+
+    @include response-max($mobile) {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+}
+
+.order__form_subtitle {
+    margin-bottom: 32px;
+    color: $color-grey;
+    font-size: 16px;
+
+    span {
+        display: inline-block;
+        margin: 0 8px;
+        position: relative;
+
+        &:before {
+            content: '';
+            display: inline-block;
+            vertical-align: bottom;
+            background: url('../img/coin.svg') center / 20px no-repeat;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+    }
+
+    @include response-max($mobile) {
+        font-size: 12px;
+        margin-bottom: 16px;
+    }
+}
+
+.btn-wrapper {
+    @include response-max($mobile) {
+        width: 100%;
+        text-align: center;
+
+        button {
+            width: 90%;
+        }
+    }
+}

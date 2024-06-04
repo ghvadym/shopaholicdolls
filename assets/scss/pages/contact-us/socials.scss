@@ -1,0 +1,19 @@
+.contact-us__socials {
+  margin-top: 24px;
+  border-top: 1px solid $border-color;
+  padding-top: 24px;
+}
+
+.social_items__list {
+  display: flex;
+  justify-content: space-evenly;
+
+  @include response-min($laptop-landscape + 1) {
+    justify-content: center;
+    gap: 48px;
+  }
+
+  img {
+    filter: invert(100%);
+  }
+}

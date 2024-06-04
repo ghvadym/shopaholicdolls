@@ -1,0 +1,301 @@
+.post_cards__list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+
+    .post_card__action {
+        width: 24px;
+        height: 24px;
+
+        img {
+            transition: 0.3s;
+        }
+
+        @include response-min($laptop-landscape + 1) {
+            &:hover img {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    @include response-max($mobile) {
+        padding-bottom: 20px !important;
+
+        .swiper-slide {
+            &.post_card {
+                width: 150px;
+                max-width: 150px;
+                margin-bottom: 0;
+            }
+
+            .post_card__body {
+                padding: 6px;
+            }
+
+            .post_card__price_regular {
+                display: none;
+            }
+
+            .post_card__footer {
+                padding: 9px 0;
+            }
+
+            .post_card__action {
+                width: 20px;
+                height: 20px;
+            }
+
+            .post_card__price {
+                font-size: 15px;
+            }
+
+            .post_card__title {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+.post_card {
+    max-width: calc(25% - 20px);
+    width: 100%;
+    margin: 0 10px 20px 10px;
+    box-shadow: 4px 4px 8px 0 #00000008;
+    transition: 0.3s ease;
+    text-align: center;
+    border-radius: 4px;
+    overflow: hidden;
+    height: auto !important;
+
+    @include response-min($laptop-landscape + 1) {
+        &:hover {
+            box-shadow: 4px 4px 8px 0 #00000014;
+
+            .post_card__image img {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    @include response-max($mobile) {
+        margin: 0 8px;
+    }
+}
+
+.post_card__content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.post_card__header {
+    width: 100%;
+}
+
+.post_card__body {
+    width: 100%;
+    flex-grow: 1;
+    padding: 20px 20px 0;
+
+    & > * {
+        margin-bottom: 8px;
+    }
+
+    @include response-max($laptop-landscape) {
+        padding: 8px 8px 0;
+
+        & > * {
+            margin-bottom: 4px;
+        }
+    }
+}
+
+.post_card__image {
+    overflow: hidden;
+    aspect-ratio: 1/1;
+    @include image-cover;
+    position: relative;
+
+    img {
+        transition: 0.3s ease;
+    }
+}
+
+.post_cards__list_wrapper, .archive-products{
+    .product-info__sale-new-wrapper{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        top: 12px;
+        left: 0;
+    }
+}
+
+.post_card__title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 23px;
+    height: 46px;
+    overflow: hidden;
+}
+
+.post_card__text {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    color: #424242;
+    height: 37px;
+    overflow: hidden;
+}
+
+.post_card__prices {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 8px 0;
+}
+
+.post_card__price {
+    font-size: 18px;
+    font-weight: 700;
+
+    &.sale {
+        color: $color-danger;
+
+        @include response-max($mobile) {
+            margin-left: auto;
+            margin-right: 7px;
+        }
+    }
+}
+
+.post_card__price_regular {
+    text-decoration: line-through;
+    color: #808080;
+    font-size: 12px;
+    position: absolute;
+    left: 16px;
+}
+
+.post_card__footer {
+    border-top: 1px solid #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 13px 0;
+    margin-top: 0;
+}
+
+.post_cards__list_wrapper {
+    position: relative;
+
+    @include response-max($mobile) {
+        margin: 0 -16px;
+        padding-left: 6px;
+    }
+}
+
+.slider_posts__arrows {
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 30px !important;
+        height: 30px !important;
+        top: 33% !important;
+
+        &:after {
+            font-size: 40px !important;
+            color: $color-main !important;
+            font-weight: 800 !important;
+        }
+    }
+
+    .swiper-button-next {
+        right: 20px;
+    }
+
+    .swiper-button-prev {
+        left: 20px;
+    }
+
+    @include response-max($mobile) {
+        display: none !important;
+    }
+}
+
+.swiper-button-disabled {
+    pointer-events: auto !important;
+}
+
+.post_card__image.hidden {
+    filter: grayscale(100%);
+}
+
+.out {
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: $color-secondary;
+    @include response-max($laptop-landscape + 1) {
+        font-size: 16px;
+    }
+}
+
+.post_card__action {
+    @include pointer;
+    width: 22px;
+    height: 22px;
+
+    svg, img {
+        width: 100%;
+    }
+
+    &:after {
+        left: calc(100% + 3px);
+        width: 13px;
+        height: 13px;
+        transform: translate(0, -50%);
+    }
+}
+
+.sale-new-info-wrapper {
+    position: absolute;
+    left: -16px;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 9;
+
+    @include response-min($laptop-portrait + 1) {
+        left: -30px;
+    }
+}
+
+.new-info-icon,
+.sale-info-icon {
+    width: 52px;
+    height: 20px;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: $color-white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+
+    @include response-min($laptop-landscape + 1) {
+        width: 80px;
+        height: 32px;
+        font-size: 16px;
+    }
+}
+
+.new-info-icon {
+    background-color: $color-main;
+}
+
+.sale-info-icon {
+    background-color: $color-danger;
+}

@@ -1,0 +1,107 @@
+@mixin response-max($size) {
+    @media only screen and (max-width: $size) {
+        @content;
+    }
+}
+
+@mixin response-min($size) {
+    @media only screen and (min-width: $size) {
+        @content;
+    }
+}
+
+@mixin response-range($min, $max) {
+    @media only screen and (min-width: $min) and (max-width: $max) {
+        @content;
+    }
+}
+
+@mixin pointer() {
+    @include response-min($laptop-landscape + 1) {
+        cursor: pointer;
+    }
+}
+
+@mixin line-break($rows) {
+    -webkit-line-clamp: $rows;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: keep-all;
+    display: -webkit-box;
+}
+
+@mixin font($fontname, $filename, $fontweight, $fontstyle) {
+    @font-face {
+        font-family: $fontname;
+        src: local($fontname),
+             url(#{ $theme-fonts-url + $filename + '.ttf'}) format('truetype');
+        font-weight: $fontweight;
+        font-style: $fontstyle;
+        font-display: swap;
+    }
+}
+
+@mixin scrollbar {
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #fff;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #E6E6E6;
+        border-radius: 4px;
+    }
+}
+
+@mixin image-cover {
+    & > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+@mixin image-contain {
+    & > img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+@mixin card-hover {
+    @include response-min($laptop-landscape + 1) {
+        overflow: hidden;
+
+        img {
+            transition: 0.3s ease;
+        }
+
+        &:hover {
+            img {
+                transform: scale(1.1);
+            }
+        }
+    }
+}
+
+@mixin underline {
+    position: relative;
+    line-height: 1;
+
+    &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 1px;
+        width: 100%;
+        height: 1px;
+        background: $color-main;
+    }
+}

@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&display=swap');
+//Core
+@import "core/variables";
+@import "core/mixins";
+@import "core/normalize";
+//@import "core/fonts";
+@import "core/global";
+
+//Parts
+@import "parts/header";
+@import "parts/footer";
+@import "parts/card";
+@import "parts/form";

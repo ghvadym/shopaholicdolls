@@ -1,0 +1,36 @@
+.contact-us__info {
+    margin-top: 24px;
+}
+
+.contact-us__info {
+    display: flex;
+    flex-direction: column;
+    gap: 33px;
+}
+
+.contact-us__info-item {
+    display: flex;
+    align-items: center;
+
+    img {
+        transition: 0.3s ease;
+    }
+
+    @include response-min($laptop-landscape) {
+        &:hover {
+            img {
+                transform: scale(1.1);
+            }
+
+            .contact-us__info-link {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.contact-us__info-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 16px;
+}

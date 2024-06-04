@@ -1,0 +1,168 @@
+//Core
+@import "core/variables";
+@import "core/mixins";
+
+.gift-cards__columns-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 16px;
+}
+
+.gift-cards__variations-wrap {
+  background: none;
+  padding: 0;
+}
+
+.gift-card__add-btn-wrap {
+  width: 100%;
+  padding: 20px 16px;
+  background-color: #F1F1F1;
+  border-radius: 2px;
+
+  @include response-min($laptop-landscape + 1) {
+    padding: 32px;
+  }
+}
+
+.gift-card__info {
+  ul {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+
+    li {
+      padding-left: 39px;
+      color: $color-grey;
+      font-size: 18px;
+      position: relative;
+
+      &:before {
+        content: url("../img/check-circle.svg");
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}
+
+.gift-cards__no-slider {
+  display: none;
+  opacity: 0;
+}
+
+.gift-card__price {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 32px;
+  font-weight: 700;
+}
+
+#pwgc-custom-amount-error {
+  text-align: right;
+}
+
+.gift-cards__error {
+  border: 1px solid $color-danger !important;
+}
+
+.pwgc-subtitle {
+  text-align: right;
+}
+
+#pwgc-purchase-container {
+  padding: 0 16px;
+
+  @include response-min($laptop-landscape + 1) {
+    padding: 0;
+  }
+}
+
+#pwgc-purchase-container {
+  .form-row:not(:last-child) {
+    margin-bottom: 24px;
+  }
+}
+
+.gift-cards__image-wrap {
+  justify-content: center;
+}
+
+.form-row.user-logged-in {
+  margin: 0 !important;
+  opacity: 0 !important;
+  height: 0 !important;
+}
+
+.gift-cards__checkbox-wrap {
+  margin-bottom: 19px;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  @include response-min($laptop-landscape + 1) {
+    margin-bottom: 24px;
+  }
+
+  input {
+    opacity: 0;
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    left: 0;
+    top: 0;
+    z-index: 1;
+
+    @include pointer;
+  }
+
+  label {
+    position: relative;
+    
+    span {
+      margin: 0 0 0 34px;
+      font-size: 16px;
+    }
+
+    &:after, &:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &:after {
+      left: 2px;
+      width: 15px;
+      height: 15px;
+      transition: 0.3s ease;
+      opacity: 0;
+      background: url('../img/check.svg') center / 15px no-repeat;
+    }
+
+    &:before {
+      left: 0;
+      width: 20px;
+      height: 20px;
+      border: 1px solid $color-main;
+      border-radius: 2px;
+    }
+
+    @include pointer;
+  }
+}
+
+.gift-card__email-checkbox-label.checked {
+  &:after {
+    opacity: 1;
+  }
+}
+
+.gift-cards__checkbox-wrap.user-not-logged-in {
+  display: none;
+}
+
+#pwgc-message {
+  min-height: 118px;
+}

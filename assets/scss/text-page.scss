@@ -1,0 +1,27 @@
+//Core
+@import "core/variables";
+@import "core/mixins";
+
+//Parts
+@import "pages/text-page/tabs";
+
+.text-page {
+  h1 {
+    font-size: 24px;
+    text-align: center;
+
+    @include response-min($laptop-landscape + 1) {
+      font-size: 36px;
+    }
+  }
+}
+
+.text-page__row {
+  width: 100%;
+
+  @include response-min($laptop-landscape + 1) {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,17 @@
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Icons/calendar-bell" clip-path="url(#clip0_1829_25393)">
+<path id="Vector" d="M17.1422 2.02734H2.84219C1.95853 2.02734 1.24219 2.74369 1.24219 3.62734V6.00234H18.7422V3.62734C18.7422 2.74369 18.0258 2.02734 17.1422 2.02734Z" stroke="#A5A5A5" stroke-miterlimit="10"/>
+<path id="Vector_2" d="M18.7422 6H1.24219V17.125C1.24219 18.0087 1.95853 18.725 2.84219 18.725H17.1422C18.0258 18.725 18.7422 18.0087 18.7422 17.125V6Z" stroke="#A5A5A5" stroke-miterlimit="10"/>
+<path id="Vector_3" d="M5.22656 0.433594V3.61693" stroke="#A5A5A5" stroke-miterlimit="10"/>
+<path id="Vector_4" d="M14.7656 0.433594V3.61693" stroke="#A5A5A5" stroke-miterlimit="10"/>
+<path id="Vector_5" d="M9.99219 0.433594V3.61693" stroke="#A5A5A5" stroke-miterlimit="10"/>
+<path id="Vector_6" d="M9.99284 9.16797C10.6249 9.16797 11.2311 9.41907 11.6781 9.86603C12.1251 10.313 12.3762 10.9192 12.3762 11.5513V13.9346H7.60951V11.5763C7.6062 11.2612 7.66541 10.9486 7.7837 10.6566C7.90199 10.3645 8.07702 10.0988 8.29867 9.87485C8.52031 9.65088 8.78416 9.47308 9.07497 9.35175C9.36577 9.23042 9.67774 9.16795 9.99284 9.16797Z" stroke="#A5A5A5" stroke-miterlimit="10"/>
+<path id="Vector_7" d="M13.9656 13.9609H6.01562" stroke="#A5A5A5" stroke-miterlimit="10"/>
+<path id="Vector_8" d="M10.0026 15.5443C10.4398 15.5443 10.7943 15.1898 10.7943 14.7526C10.7943 14.3154 10.4398 13.9609 10.0026 13.9609C9.56538 13.9609 9.21094 14.3154 9.21094 14.7526C9.21094 15.1898 9.56538 15.5443 10.0026 15.5443Z" stroke="#A5A5A5" stroke-miterlimit="10"/>
+</g>
+<defs>
+<clipPath id="clip0_1829_25393">
+<rect width="20" height="20" fill="white"/>
+</clipPath>
+</defs>
+</svg>

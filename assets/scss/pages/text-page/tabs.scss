@@ -1,0 +1,100 @@
+.text-page__tab {
+  position: relative;
+  font-size: 16px;
+
+  img {
+    width: 20px;
+    height: 21px;
+    margin-right: 12px;
+    opacity: 0.8;
+  }
+}
+
+.text-page__col {
+  width: 100%;
+
+  @include response-min($laptop-landscape + 1) {
+    &:first-child {
+      max-width: 361px;
+    }
+  }
+
+  @include response-min($laptop-landscape + 1) {
+    &:last-child {
+      margin-left: 66px;
+    }
+  }
+}
+
+.text-page__tab_title {
+  display: flex;
+  align-items: center;
+  color: $color-grey;
+  opacity: 0.8;
+}
+
+.tab-active {
+  .text-page__tab_title {
+    opacity: 1;
+  }
+
+  img {
+    opacity: 1;
+  }
+}
+
+.text-page__content {
+  font-weight: 400;
+  padding: 0 0 16px !important;
+
+  @include response-min($laptop-landscape + 1) {
+    padding: 24px 0;
+  }
+
+  h2,
+  h3 {
+    text-align: center;
+    color: $color-grey;
+    font-size: 32px;
+    line-height: 130%;
+  }
+
+  p {
+    color: $color-grey;
+    font-size: 16px;
+
+    &:not(:last-child) {
+      margin: 0 0 16px;
+    }
+  }
+
+  ul {
+    li {
+      padding-left: 39px;
+      color: $color-grey;
+      font-size: 16px;
+      position: relative;
+      margin: 0 0 24px;
+
+      &:before {
+        content: url("../img/check-circle.svg");
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &:first-child {
+        margin: 16px 0 24px;
+
+        @include response-min($laptop-landscape + 1) {
+          margin: 32px 0 24px;
+        }
+      }
+
+      &:last-child {
+        margin: 24px 0 0;
+      }
+    }
+  }
+}

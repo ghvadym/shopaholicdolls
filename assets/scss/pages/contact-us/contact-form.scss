@@ -1,0 +1,148 @@
+.contact-form {
+    position: relative;
+
+    .wpcf7-spinner {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: $color-bg-main;
+        opacity: 0.5;
+        border-radius: unset;
+        margin: 0;
+
+        &:before {
+            content: none;
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: url('../img/preloader.gif') center / contain no-repeat;
+            width: 30px;
+            height: 30px;
+            z-index: 100;
+        }
+    }
+
+    .wpcf7-not-valid-tip {
+        font-size: 14px;
+        text-align: right;
+        margin-top: 4px;
+    }
+
+    .wpcf7-not-valid {
+        border: 1px solid $color-danger !important;
+    }
+}
+
+.contact-form__label {
+    font-size: 0;
+
+    span {
+        font-size: 16px;
+        margin: 0;
+    }
+}
+
+.contact-form__name,
+.contact-form__phone,
+.contact-form__email,
+.contact-form__questions {
+    padding: 16px;
+    border: 1px solid $border-color !important;
+    border-radius: 4px;
+    background-color: transparent;
+    font-size: 16px;
+    color: $color-grey;
+}
+
+.contact-form__name {
+    margin-top: 0;
+}
+
+.contact-form__questions {
+    max-height: 148px;
+}
+
+.contact-form__submit {
+    margin-top: 24px;
+    @include pointer;
+}
+
+.contact-form__terms-wrap {
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 15px;
+
+    .contact-form__terms {
+        opacity: 0;
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        left: 0;
+        top: 0;
+        z-index: 1;
+        @include pointer;
+    }
+
+    .contact-form__label-terms {
+        position: relative;
+
+        &:after, &:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        &:after {
+            left: 2px;
+            width: 15px;
+            height: 15px;
+            transition: 0.3s ease;
+            opacity: 0;
+            background: url('../img/check.svg') center / 15px no-repeat;
+        }
+
+        &:before {
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border: 1px solid $color-main;
+            border-radius: 2px;
+        }
+    }
+
+    .contact-form__label-terms.checked {
+        &:after {
+            opacity: 1;
+        }
+    }
+
+    .wpcf7-list-item {
+        margin: 0 0 0 34px;
+    }
+
+    a {
+        text-decoration: underline;
+        transition: 0.3s ease-in-out;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+.wpcf7 form .wpcf7-response-output {
+    margin: 24px 0 0 0;
+    border-radius: 4px;
+    border: 1px solid;
+}

@@ -1,0 +1,130 @@
+//Core
+@import "core/variables";
+@import "core/mixins";
+
+
+.about-us{
+   padding: 60px 0;
+   background-color: $color-bg-main;
+   &:last-of-type{
+    padding-bottom: 120px;
+   }
+   &:nth-of-type(2n + 1){
+    background-color: #f1f1f1;
+}
+   @include response-max($mobile) {
+        padding: 30px 0;
+        &:last-of-type{
+            padding-bottom: 60px;
+        }
+        &:nth-of-type(2n){
+            padding-top: 0;
+        }
+    }
+}
+body.mobile-version .main{
+    margin-bottom: 0;
+}
+.about-us__block{
+    display: flex;
+    gap: 60px;
+    &.inverted{
+        flex-direction: row-reverse;
+        @include response-max($laptop-landscape + 1) {
+            flex-direction: column;
+        }
+    }
+    @include response-max($laptop-landscape + 1) {
+        flex-direction: column;
+    }
+    @include response-max($mobile) {
+        flex-direction: column;
+    }
+    &--img{
+        flex: 1;
+        border-radius: 4px;
+        overflow: hidden;
+        img{
+            object-fit: cover;
+        }
+        @include response-max($mobile) {
+            max-height: 376px;
+            height: 100%;
+            img{
+                max-height: 376px;
+                min-height: 376px;
+            }
+        }
+    }
+    &--content{
+        flex: 1;
+        color: $color-grey;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        justify-content: center;
+        @include response-max($mobile) {
+            gap: 16px;
+        }
+    }
+    &--title{
+        font-size: 32px;
+        font-weight: 700;
+        text-transform: uppercase;
+        line-height: 130%;
+        @include response-max($mobile) {
+            font-size: 28px;
+        }
+    }
+    &--text{
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        p{
+            margin-bottom: 0;
+            font-size: 16px;
+        }
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            li {
+              color: $color-grey;
+              font-size: 16px;
+              position: relative;
+              padding: 8px 0 8px 39px;
+              &:before {
+                content: url("../img/check-circle.svg");
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+              }
+            }
+        }
+        strong{
+            color: $color-main;
+            font-size: 18px;
+        }
+    }
+    .btn-transparent{
+        width: fit-content;
+        padding: 16px 104px;
+        @include response-max($mobile) {
+            margin-top: 8px;
+            width: 100%;
+        }
+    }
+}
+.about-title{
+    h1{
+        font-size: 48px;
+        line-height: 130%;
+        text-align: center;
+        margin-bottom: 0;
+        @include response-max($mobile) {
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
+    }
+}

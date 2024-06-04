@@ -1,0 +1,11 @@
+//Core
+@import "core/variables";
+@import "core/mixins";
+
+//Parts
+@import "pages/checkout/form-auth";
+@import "pages/checkout/form-checkout";
+@import "pages/checkout/order-summary";
+@import "pages/checkout/shipping-methods";
+@import "pages/checkout/gift-options";
+@import "pages/checkout/payment";

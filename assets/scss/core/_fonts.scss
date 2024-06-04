@@ -1,0 +1,13 @@
+$icons: (
+    'Karla' 'Karla-ExtraLight' 200 normal,
+    'Karla' 'Karla-Light' 300 normal,
+    'Karla' 'Karla-Regular' 400 normal,
+    'Karla' 'Karla-Medium' 500 normal,
+    'Karla' 'Karla-SemiBold' 600 normal,
+    'Karla' 'Karla-Bold' 700 normal,
+    'Karla' 'Karla-ExtraBold' 800 normal
+);
+
+@each $name, $filename, $font-weight, $font-style in $icons {
+    @include font($name, $filename, $font-weight, $font-style);
+}

@@ -1,0 +1,66 @@
+.checkout__auth {
+    .content-divider {
+        margin: 40px 0;
+    }
+}
+
+.checkout__auth_top {
+    text-align: center;
+}
+
+.checkout__auth_tabs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.checkout__auth_form {
+    .woocommerce-form {
+        padding: 0 !important;
+        border: 0 !important;
+    }
+
+    .button {
+        width: 100%;
+    }
+
+    .lost_password {
+        text-align: right;
+
+        a {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: unset;
+        }
+    }
+
+    .woocommerce-privacy-policy-text {
+        display: none;
+    }
+}
+
+.checkout__auth_tab {
+    .btn-plain {
+        font-size: 20px;
+        text-transform: uppercase;
+    }
+
+    &.tab-active {
+        .btn-plain {
+            font-weight: 700;
+
+            &:after {
+                opacity: 0;
+            }
+        }
+    }
+}
+
+.checkout__auth_form {
+    display: none;
+
+    &.tab-active {
+        display: block;
+    }
+}

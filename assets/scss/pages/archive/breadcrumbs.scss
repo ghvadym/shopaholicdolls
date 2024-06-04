@@ -1,0 +1,23 @@
+.breadcrumbs {
+    padding-top: 24px;
+    font-size: 16px;
+
+    @include response-min($laptop-landscape + 1) {
+        display: none;
+    }
+
+    &__wrapper {
+        display: flex;
+        gap: 12px;
+    }
+
+    a {
+        color: #6F6F6F;
+        text-transform: capitalize;
+    }
+
+    &-current {
+        color: $color-main;
+        text-transform: capitalize;
+    }
+}

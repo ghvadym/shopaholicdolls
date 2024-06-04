@@ -1,0 +1,74 @@
+.gift_options__list {
+    li {
+        & > label {
+            padding-left: 35px;
+
+            &:after {
+                background: url('../img/check-pink.svg') center / 18px no-repeat;
+                left: 3px;
+            }
+
+            &:before {
+                border-radius: 2px;
+                left: 0;
+            }
+        }
+    }
+
+    img {
+        margin-left: 16px;
+
+        @include response-max($laptop-landscape - 1) {
+            margin-left: auto;
+        }
+    }
+}
+
+.gift_option__item {
+    flex-wrap: wrap;
+
+    & > .form-row {
+        height: 0 !important;
+        opacity: 0 !important;
+        width: 100% !important;
+        transition: 0.3s ease-in-out;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    textarea {
+        resize: none !important;
+        height: 100% !important;
+    }
+
+    input:checked {
+        & + label, & + label .amount {
+            color: $color-main;
+        }
+
+        & ~ .form-row {
+            height: 137px !important;
+            opacity: 1 !important;
+            margin: 30px 0 80px !important;
+        }
+    }
+}
+
+.gift_options {
+    .amount {
+        width: 90px;
+    }
+}
+
+.gift_options__heading {
+    color: $color-secondary;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: capitalize;
+    margin-bottom: 12px;
+}
+
+.gift_message_apply {
+    margin: 10px 0 0;
+    width: 100%;
+}
