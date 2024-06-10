@@ -212,48 +212,6 @@
             "append": ""
         },
         {
-            "key": "field_665c5bbf7d1f3",
-            "label": "Mailchimp api key",
-            "name": "mailchimp_api_key",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "translations": "copy_once",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_665c5bc87d1f4",
-            "label": "Mailchimp list id",
-            "name": "mailchimp_list_id",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "translations": "copy_once",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
             "key": "field_65bbe00c1ca3e",
             "label": "Rewards term",
             "name": "rewards_term",
@@ -621,6 +579,89 @@
             ]
         },
         {
+            "key": "field_666754f45fab6",
+            "label": "Rewards for points",
+            "name": "rewards",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add Row",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_666754f45fabb",
+                    "label": "Required points",
+                    "name": "points",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "20",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "translations": "copy_once",
+                    "min": "",
+                    "max": "",
+                    "placeholder": "",
+                    "step": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_666754f45fab6"
+                },
+                {
+                    "key": "field_666754f45fabc",
+                    "label": "Products",
+                    "name": "products",
+                    "aria-label": "",
+                    "type": "relationship",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": [
+                        "product"
+                    ],
+                    "post_status": "",
+                    "taxonomy": [
+                        "product_cat:rewards"
+                    ],
+                    "filters": [
+                        "search"
+                    ],
+                    "return_format": "object",
+                    "translations": "copy_once",
+                    "min": "",
+                    "max": "",
+                    "elements": [
+                        "featured_image"
+                    ],
+                    "bidirectional": 0,
+                    "bidirectional_target": [],
+                    "parent_repeater": "field_666754f45fab6"
+                }
+            ]
+        },
+        {
             "key": "field_65f00a1749a9b",
             "label": "Multicurrency price format",
             "name": "multicurrency_price_format",
@@ -691,6 +732,29 @@
             "step": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_6667493727cd6",
+            "label": "Points multiplier",
+            "name": "points_multiplier",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "copy_once",
+            "min": "",
+            "max": "",
+            "placeholder": "",
+            "step": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -711,5 +775,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1717328865
+    "modified": 1718050003
 }

@@ -626,17 +626,17 @@ function cart_update_rewards()
     $lang = $data['lang'] ?? CURRENT_LANG;
     $reward_items = get_rewards($lang);
 
-    foreach ($reward_items as $reward_item) {
-        $translations = pll_get_post_translations($reward_item->ID);
+    foreach ($reward_items as $product_id => $price) {
+        $translations = pll_get_post_translations($product_id);
 
-        foreach ($translations as $product_id) {
-            if (is_product_in_cart($product_id)) {
-                if (!in_array($product_id, $selected_reward_items_ids)) {
-                    remove_cart_item($product_id);
+        foreach ($translations as $id) {
+            if (is_product_in_cart($id)) {
+                if (!in_array($id, $selected_reward_items_ids)) {
+                    remove_cart_item($id);
                 }
             } else {
-                if (in_array($product_id, $selected_reward_items_ids)) {
-                    WC()->cart->add_to_cart($product_id, 1, 0, [], [
+                if (in_array($id, $selected_reward_items_ids)) {
+                    WC()->cart->add_to_cart($id, 1, 0, [], [
                         'custom_price' => 0
                     ]);
                 }
@@ -858,7 +858,7 @@ function reorder_order()
     /* Add products to cart */
     $gift_card_id = get_gift_product();
     $rewards = get_rewards();
-    $rewards_ids = array_column($rewards, 'ID');
+    $rewards_ids = array_keys($rewards);
     $gifts_ids = get_free_gift_products();
 
     foreach ($order->get_items() as $item_id => $item) {

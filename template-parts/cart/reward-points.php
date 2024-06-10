@@ -21,40 +21,40 @@ $points_total = (int) $users_points - (int) $used_points;
     </div>
     <div class="cart-sidebar__content<?php echo !empty($open) ? ' open' : ''; ?>">
         <form id="reward_products">
-            <?php foreach ($reward_items as $product):
-                $price = (int) get_post_meta($product->ID, '_price', true);
+            <?php foreach ($reward_items as $product_id => $price):
                 $product_available = ($points_total - $price) > 0;
+                $product_title = get_the_title($product_id);
 
                 if (function_exists('pll_get_post_translations')) {
-                    $translations = pll_get_post_translations($product->ID);
+                    $translations = pll_get_post_translations($product_id);
                     $is_product_in_cart = false;
 
-                    foreach ($translations as $product_id) {
-                        if (is_product_in_cart($product_id)) {
+                    foreach ($translations as $translation_product_id) {
+                        if (is_product_in_cart($translation_product_id)) {
                             $is_product_in_cart = true;
                             break;
                         }
                     }
                 } else {
-                    $is_product_in_cart = is_product_in_cart($product->ID);
+                    $is_product_in_cart = is_product_in_cart($product_id);
                 }
                 ?>
 
                 <div class="cart-sidebar__points--item<?php echo !$is_product_in_cart && !$product_available ? ' hidden' : ''; ?>">
                     <div class="cart-sidebar__points--image">
-                        <img src="<?php echo esc_url(get_thumbnail_url($product->ID)); ?> "
-                             alt="<?php echo esc_attr($product->post_title); ?>"
-                             title="<?php echo esc_attr($product->post_title); ?>">
+                        <img src="<?php echo esc_url(get_thumbnail_url($product_id)); ?> "
+                             alt="<?php echo esc_attr($product_title); ?>"
+                             title="<?php echo esc_attr($product_title); ?>">
                     </div>
                     <div class="cart-sidebar__points--title">
                         <div class="point_title">
-                            <?php echo esc_html($product->post_title); ?>
+                            <?php echo esc_html($product_title); ?>
                         </div>
                         <span><?php echo sprintf('%s pkt', $price); ?></span>
                     </div>
                     <?php if ($is_product_in_cart || $product_available): ?>
                         <div class="cart-sidebar__points--check">
-                            <input type="checkbox" class="reward_product_item" name="reward_items[]" value="<?php echo $product->ID; ?>" <?php checked($is_product_in_cart); ?>>
+                            <input type="checkbox" class="reward_product_item" name="reward_items[]" value="<?php echo $product_id; ?>" <?php checked($is_product_in_cart); ?>>
                             <span></span>
                         </div>
                     <?php endif; ?>

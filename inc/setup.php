@@ -861,14 +861,12 @@ function check_gifts($cart)
 
     $gift_card_id = get_gift_product();
     $gift_cards = [];
-
     $reward_items = get_rewards();
-    $reward_items_ids = array_column($reward_items, 'ID');
 
     /* Calculate order items total price */
     $cart_total = 0;
     foreach ($cart->get_cart() as $cart_item_key => $cart_item) {
-        if (in_array($cart_item['product_id'], $reward_items_ids)) {
+        if (array_key_exists($cart_item['product_id'], $reward_items)) {
             continue;
         }
 

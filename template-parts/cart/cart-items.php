@@ -13,7 +13,6 @@ $gifts_data = gifts_data();
 $gifts_data_ids = $gifts_data['ids'] ?? [];
 
 $rewards = get_rewards();
-$rewards_ids = array_column($rewards, 'ID');
 
 foreach ($cart_items as $cart_item_key => $cart_item) {
     $product = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key);
@@ -89,7 +88,7 @@ foreach ($cart_items as $cart_item_key => $cart_item) {
                 <?php endif; ?>
             </div>
             <div class="cart-table-cell product-quantity mobile_version" data-title="Quantity" bis_skin_checked="1">
-                <?php if (!in_array($cart_item['product_id'], exclude_product_ids()) && !in_array($cart_item['product_id'], $rewards_ids) && $product_id != $gift_card_id && !in_array($product_id, $gifts_data_ids)):
+                <?php if (!in_array($cart_item['product_id'], exclude_product_ids()) && !array_key_exists($cart_item['product_id'], $rewards_ids) && $product_id != $gift_card_id && !in_array($product_id, $gifts_data_ids)):
                     get_template_part_var('cart/product-quantity', [
                         'cart_item'     => $cart_item,
                         'cart_item_key' => $cart_item_key,
@@ -109,7 +108,7 @@ foreach ($cart_items as $cart_item_key => $cart_item) {
 
             <?php
             $item_data = $cart_item['data']->get_data();
-            if (!in_array($cart_item['product_id'], $rewards_ids) && $is_product_variable && !empty($item_data['attributes']) && $product_id != $gift_card_id && !in_array($product_id, $gifts_data_ids)) :
+            if (!array_key_exists($cart_item['product_id'], $rewards_ids) && $is_product_variable && !empty($item_data['attributes']) && $product_id != $gift_card_id && !in_array($product_id, $gifts_data_ids)) :
                 $attributes = $item_data['attributes'];
                 
                 if (is_array($attributes)) : ?>
@@ -138,7 +137,7 @@ foreach ($cart_items as $cart_item_key => $cart_item) {
 
             <div class="product-bottom cart-table-cell">
                 <?php
-                if (!in_array($cart_item['product_id'], $rewards_ids) && $is_product_variable && !empty($item_data['attributes']) && $product_id != $gift_card_id && !in_array($product_id, $gifts_data_ids)) {
+                if (!array_key_exists($cart_item['product_id'], $rewards_ids) && $is_product_variable && !empty($item_data['attributes']) && $product_id != $gift_card_id && !in_array($product_id, $gifts_data_ids)) {
                     echo apply_filters(
                         'woocommerce_cart_item_edit_link',
                         sprintf(
@@ -177,7 +176,7 @@ foreach ($cart_items as $cart_item_key => $cart_item) {
 
             </div>
 
-            <?php if (!in_array($cart_item['product_id'], $rewards_ids) && $is_product_variable && !empty($item_data['attributes']) && $product_id != $gift_card_id && !in_array($product_id, $gifts_data_ids)):
+            <?php if (!array_key_exists($cart_item['product_id'], $rewards_ids) && $is_product_variable && !empty($item_data['attributes']) && $product_id != $gift_card_id && !in_array($product_id, $gifts_data_ids)):
                 $possible_variations = get_all_possible_variations($product_id);
                 $cart_item_attributes = $item_data['attributes'];
                 ?>
@@ -225,7 +224,7 @@ foreach ($cart_items as $cart_item_key => $cart_item) {
             ?>
         </div>
         <div class="cart-table-cell product-quantity desktop_version" data-title="Quantity" bis_skin_checked="1">
-            <?php if (!in_array($cart_item['product_id'], exclude_product_ids()) && !in_array($cart_item['product_id'], $rewards_ids) && $product_id != $gift_card_id && !in_array($product_id, $gifts_data_ids)):
+            <?php if (!in_array($cart_item['product_id'], exclude_product_ids()) && !array_key_exists($cart_item['product_id'], $rewards_ids) && $product_id != $gift_card_id && !in_array($product_id, $gifts_data_ids)):
                 get_template_part_var('cart/product-quantity', [
                     'cart_item'     => $cart_item,
                     'cart_item_key' => $cart_item_key,

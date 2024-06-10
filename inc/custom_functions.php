@@ -957,31 +957,40 @@ function gift_used_date(int $gift_card_id = 0): ?string
 
 function get_rewards(string $lang = ''): array
 {
-    if ($lang == 'pl') {
-        $rewards_term_id = get_field('rewards_term_pl', 'options');
-    } else {
-        $rewards_term_id = get_field('rewards_term', 'options');
+    if (!$lang) {
+        $lang = CURRENT_LANG;
     }
 
-    if (!$rewards_term_id) {
-        return [];
+    $rewards = get_field('rewards', 'options');
+    $rewards_data = [];
+
+    if (empty($rewards)) {
+        return $rewards_data;
     }
 
-    return get_posts([
-        'post_type'    => 'product',
-        'post_status'  => ['publish', 'draft'],
-        'numberposts'  => -1,
-        'meta_key'     => '_price',
-        'orderby'      => 'meta_value_num',
-        'order'        => 'ASC',
-        'tax_query'    => [
-            [
-                'taxonomy' => 'product_cat',
-                'field'    => 'term_id',
-                'terms'    => [$rewards_term_id]
-            ]
-        ]
-    ]);
+    $currency_rate = get_currency_rate();
+
+    foreach ($rewards as $reward) {
+        $price = $reward['points'] ?? 0;
+        $price *= $currency_rate;
+        $products = $reward['products'] ?? [];
+
+        if (empty($products)) {
+            continue;
+        }
+
+        foreach ($products as $product_id) {
+            $translations = pll_get_post_translations($product_id);
+
+            if (empty($translations[$lang])) {
+                continue;
+            }
+
+            $rewards_data[$translations[$lang]] = $price;
+        }
+    }
+
+    return $rewards_data;
 }
 
 
@@ -1006,8 +1015,6 @@ function get_used_reward_points()
         return $used_reward_points;
     }
 
-    $reward_items_ids = array_column($reward_items, 'ID');
-
     foreach ($cart_items as $cart_item) {
         $product_id = $cart_item['product_id'] ?? '';
 
@@ -1015,8 +1022,8 @@ function get_used_reward_points()
             continue;
         }
 
-        if (in_array($product_id, $reward_items_ids)) {
-            $used_reward_points += get_post_meta($product_id, '_price', true);
+        if (array_key_exists($product_id, $reward_items)) {
+            $used_reward_points += $reward_items[$product_id];
         }
     }
 
@@ -1433,25 +1440,9 @@ function points_amount($points_amount = 0): int
         $points_amount = WC()->cart->subtotal;
     }
 
-    if (!MULTI_CURRENCY_ACTIVE) {
-        return $points_amount;
-    }
+    $points_multiplier = get_field('points_multiplier', 'options') ?: 1;
 
-    $current_currency = get_current_currency();
-
-    if ($current_currency == 'PLN') {
-        return $points_amount;
-    }
-
-    $currency_rate = get_currency_rate();
-
-    if ($currency_rate == 1) {
-        return $points_amount;
-    } else {
-        $currency_rate = 1 / $currency_rate;
-    }
-
-    return (int)($points_amount * $currency_rate);
+    return (int)($points_amount * $points_multiplier);
 }
 
 
