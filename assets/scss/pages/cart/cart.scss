@@ -888,7 +888,7 @@
 }
 
 form#reward_products {
-    height: 315px;
+    max-height: 315px;
     @include scrollbar;
 }
 

@@ -13,6 +13,7 @@ $gifts_data = gifts_data();
 $gifts_data_ids = $gifts_data['ids'] ?? [];
 
 $rewards = get_rewards();
+$rewards_ids = array_keys($rewards);
 
 foreach ($cart_items as $cart_item_key => $cart_item) {
     $product = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key);

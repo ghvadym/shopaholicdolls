@@ -497,8 +497,8 @@
         },
         {
             "key": "field_65e70f94fdfce",
-            "label": "Free Gifts",
-            "name": "free_gifts",
+            "label": "rewards",
+            "name": "rewards",
             "aria-label": "",
             "type": "repeater",
             "instructions": "",
@@ -519,8 +519,8 @@
             "sub_fields": [
                 {
                     "key": "field_65e70fc1fdfcf",
-                    "label": "Step price",
-                    "name": "step_price",
+                    "label": "points",
+                    "name": "points",
                     "aria-label": "",
                     "type": "number",
                     "instructions": "",
@@ -532,7 +532,6 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "translations": "copy_once",
                     "min": "",
                     "max": "",
                     "placeholder": "",
@@ -560,13 +559,12 @@
                     ],
                     "post_status": "",
                     "taxonomy": [
-                        "product_cat:bonus"
+                        "product_cat:rewards-pl"
                     ],
                     "filters": [
                         "search"
                     ],
                     "return_format": "id",
-                    "translations": "copy_once",
                     "min": "",
                     "max": "",
                     "elements": [
@@ -575,89 +573,6 @@
                     "bidirectional": 0,
                     "bidirectional_target": [],
                     "parent_repeater": "field_65e70f94fdfce"
-                }
-            ]
-        },
-        {
-            "key": "field_666754f45fab6",
-            "label": "Rewards for points",
-            "name": "rewards",
-            "aria-label": "",
-            "type": "repeater",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "layout": "table",
-            "pagination": 0,
-            "min": 0,
-            "max": 0,
-            "collapsed": "",
-            "button_label": "Add Row",
-            "rows_per_page": 20,
-            "sub_fields": [
-                {
-                    "key": "field_666754f45fabb",
-                    "label": "Required points",
-                    "name": "points",
-                    "aria-label": "",
-                    "type": "number",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "20",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "translations": "copy_once",
-                    "min": "",
-                    "max": "",
-                    "placeholder": "",
-                    "step": "",
-                    "prepend": "",
-                    "append": "",
-                    "parent_repeater": "field_666754f45fab6"
-                },
-                {
-                    "key": "field_666754f45fabc",
-                    "label": "Products",
-                    "name": "products",
-                    "aria-label": "",
-                    "type": "relationship",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "post_type": [
-                        "product"
-                    ],
-                    "post_status": "",
-                    "taxonomy": [
-                        "product_cat:rewards"
-                    ],
-                    "filters": [
-                        "search"
-                    ],
-                    "return_format": "object",
-                    "translations": "copy_once",
-                    "min": "",
-                    "max": "",
-                    "elements": [
-                        "featured_image"
-                    ],
-                    "bidirectional": 0,
-                    "bidirectional_target": [],
-                    "parent_repeater": "field_666754f45fab6"
                 }
             ]
         },
@@ -775,5 +690,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1718050003
+    "modified": 1718132983
 }

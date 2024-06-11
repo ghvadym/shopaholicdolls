@@ -858,7 +858,6 @@ function reorder_order()
     /* Add products to cart */
     $gift_card_id = get_gift_product();
     $rewards = get_rewards();
-    $rewards_ids = array_keys($rewards);
     $gifts_ids = get_free_gift_products();
 
     foreach ($order->get_items() as $item_id => $item) {
@@ -870,7 +869,7 @@ function reorder_order()
             continue;
         }
 
-        if (in_array($product_id, $rewards_ids) || in_array($product_id, $gifts_ids)) {
+        if (array_key_exists($product_id, $rewards) || in_array($product_id, $gifts_ids)) {
             continue;
         }
 
