@@ -153,11 +153,17 @@
         .product-thumbnail {
             a {
                 width: 110px;
+                height: 110px;
+
+                img {
+                    object-fit: cover;
+                }
             }
 
             @include response-max($laptop-landscape + 1) {
                 a {
                     width: 80px;
+                    height: 80px;
                 }
             }
         }

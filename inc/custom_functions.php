@@ -968,11 +968,8 @@ function get_rewards(string $lang = ''): array
         return $rewards_data;
     }
 
-    $currency_rate = get_currency_rate();
-
     foreach ($rewards as $reward) {
         $price = $reward['points'] ?? 0;
-        $price *= $currency_rate;
         $products = $reward['products'] ?? [];
 
         if (empty($products)) {
