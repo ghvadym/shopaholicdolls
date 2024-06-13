@@ -672,5 +672,48 @@
             document.cookie = name + "=" + value + ";" + expires + ";path=/";
         }
 
+        const form_register = $('form.woocommerce-form-register');
+        if (form_register.length) {
+            $(document).on('submit', 'form.woocommerce-form-register', function(e) {
+                e.preventDefault();
+
+                var wrap = $(this);
+                var form_data = new FormData($(this)[0]);
+
+                form_data.append('action', 'customer_register');
+                form_data.append('nonce', wopajax.nonce);
+
+                $.ajax({
+                    type       : 'POST',
+                    url        : ajax,
+                    data       : form_data,
+                    processData: false,
+                    contentType: false,
+                    dataType   : 'json',
+                    beforeSend: function () {
+                        $(wrap).addClass('_spinner');
+                    },
+                    success   : function (response) {
+                        if (response.error) {
+                            if (response.show) {
+                                $(wrap).find('.form_error_message').text(response.error);
+                            }
+                        } else {
+                            $(wrap).find('.form_error_message').empty();
+                        }
+
+                        if (response.redirect) {
+                            window.location.href = response.redirect;
+                        }
+
+                        $(wrap).removeClass('_spinner');
+                    },
+                    error     : function (err) {
+                        console.log('error', err);
+                    }
+                });
+            });
+        }
+
     });
 })(jQuery);

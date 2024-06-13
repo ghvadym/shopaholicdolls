@@ -705,24 +705,6 @@ function custom_cart_collaterals() {
 }
 
 
-add_action('woocommerce_created_customer', 'woocommerce_created_customer_call', 10, 3);
-function woocommerce_created_customer_call($customer_id)
-{
-    $order_id = $_POST['order_id'] ?? '';
-
-    if ($order_id) {
-        update_post_meta($order_id, '_customer_user', $customer_id);
-
-        $order = wc_get_order($order_id);
-        if (!empty($order)) {
-            $points = points_amount($order->get_subtotal());
-
-            update_post_meta($order_id, 'order_reward_points', $points);
-            update_user_meta($customer_id, 'order_reward_points', $points);
-        }
-    }
-}
-
 /* Custom redirect */
 add_action('woocommerce_customer_reset_password', 'custom_reset_password_redirect');
 function custom_reset_password_redirect($user)

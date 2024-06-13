@@ -150,8 +150,8 @@ $addresses = [
             </div>
             <div class="desktop_version">
                 <?php get_template_part_var('confirmation/order-additional-info', [
-                    'email' => $data['billing']['email'] ?? '',
-                    'order' => $order,
+                    'email'    => $data['billing']['email'] ?? '',
+                    'order_id' => $order_id
                 ]); ?>
             </div>
         </div>

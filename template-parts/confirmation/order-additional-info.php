@@ -25,7 +25,7 @@ $is_user_logged_in = is_user_logged_in();
         <div class="checkout__auth_form">
             <?php get_template_part_var('confirmation/order-registration', [
                 'email'    => $email ?? '',
-                'order_id' => !empty($order) ? $order->get_id() : ''
+                'order_id' => $order_id ?? ''
             ]); ?>
         </div>
     </div>

@@ -38,6 +38,8 @@ if (empty($email)) {
             <button type="submit" class="woocommerce-Button btn-transparent woocommerce-button woocommerce-form-register__submit" name="register" value="<?php esc_attr_e('Register', DOMAIN); ?>"><?php esc_html_e('Sign up', DOMAIN); ?></button>
         </p>
 
+        <div class="form_error_message"></div>
+
         <?php do_action('woocommerce_register_form_end'); ?>
 
     </form>

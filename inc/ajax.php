@@ -23,7 +23,8 @@ register_ajax([
     'apply_gift_card',
     'newsletter_subscribe',
     'add_product_to_cart',
-    'update_mini_cart_items_html'
+    'update_mini_cart_items_html',
+    'customer_register'
 ]);
 
 function header_menu_brands_filter()
@@ -1278,5 +1279,137 @@ function update_mini_cart_items_html()
     wp_send_json([
         'success' => true,
         'html'    => $cart_html
+    ]);
+}
+
+function customer_register()
+{
+    check_ajax_referer('wop-nonce', 'nonce');
+
+    $data = sanitize_post($_POST);
+
+    $order_id = $data['order_id'] ?? '';
+    if (!$order_id) {
+        wp_send_json([
+            'error'   => true,
+            'message' => 'No Order ID.'
+        ]);
+
+        return;
+    }
+
+    $order = wc_get_order($order_id);
+    if (empty($order_id)) {
+        wp_send_json([
+            'error'   => true,
+            'message' => 'Empty order.'
+        ]);
+
+        return;
+    }
+
+    $password = $data['password'] ?? '';
+    if (!$password) {
+        wp_send_json([
+            'error'   => true,
+            'message' => 'No Password.'
+        ]);
+
+        return;
+    }
+
+    $email = $data['email'] ?? '';
+    if (!$email) {
+        wp_send_json([
+            'error'   => true,
+            'message' => 'No Email.'
+        ]);
+
+        return;
+    }
+
+    $get_user = get_user_by('email', $email);
+    if (!empty($get_user->ID)) {
+        wp_send_json([
+            'error'   => true,
+            'show'    => true,
+            'message' => __('User with this email exists: ', DOMAIN) . $email
+        ]);
+
+        return;
+    }
+
+    $data = $order->get_data();
+
+    $first_name = $data['billing']['first_name'] ?? '';
+    $last_name = $data['billing']['last_name'] ?? '';
+
+    $display_name = $first_name;
+    if ($last_name) {
+        $display_name .= $last_name;
+    }
+
+    $user_args = [
+        'user_login'   => $email,
+        'user_email'   => $email,
+        'first_name'   => $first_name,
+        'last_name'    => $last_name,
+        'display_name' => $display_name,
+        'user_pass'    => $password,
+        'role'         => 'customer'
+    ];
+
+    $user_id = wp_insert_user($user_args);
+
+    if (is_wp_error($user_id) || !$user_id) {
+        wp_send_json([
+            'error'   => true,
+            'show'    => true,
+            'message' => __('Something went wrong, user not created.', DOMAIN)
+        ]);
+
+        return;
+    }
+
+    wp_set_current_user($user_id);
+    wp_set_auth_cookie($user_id);
+
+    $order->update_meta_data('customer_id', $user_id);
+    $order->set_customer_id($user_id);
+
+    $points = points_amount($order->get_subtotal());
+    $order->update_meta_data('order_reward_points', $points);
+    update_user_meta($user_id, 'order_reward_points', $points);
+
+    $order->save_meta_data();
+    $order->save();
+
+    if (empty($data)) {
+        return;
+    }
+
+    $addresses = [
+        'billing',
+        'shipping',
+    ];
+
+    foreach ($addresses as $address) {
+        $fields = $data[$address] ?? [];
+
+        if (empty($fields)) {
+            continue;
+        }
+
+        foreach ($fields as $field => $value) {
+            if (!$value) {
+                continue;
+            }
+
+            update_user_meta($user_id, $address . '_' . $field, $value);
+        }
+    }
+
+    wp_send_json([
+        'redirect' => wc_get_account_endpoint_url('orders')
     ]);
 }
