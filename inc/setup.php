@@ -29,7 +29,7 @@ function wp_enqueue_scripts_call()
         wp_enqueue_style('home', WOP_THEME_URL . '/dest/css/home.css');
     }
 
-    if (is_tax() || is_archive() || is_page_template('templates/template-archive.php')) {
+    if (is_tax() || is_archive() || is_search() || is_page_template('templates/template-archive.php')) {
         wp_enqueue_style('archive', WOP_THEME_URL . '/dest/css/archive.css');
         wp_enqueue_script('archive-script', WOP_THEME_URL . '/dest/js/archive2.js', ['jquery'], time());
 
@@ -1025,7 +1025,7 @@ function shopaholic_total_sales_products_call()
     update_option('_best_selling_brands', gets_best_selling_product_categories());
 }
 
-add_action('switch_theme', 'theme_deactivated');
+add_action('switch_theme', 'theme_deactivation_hook');
 function theme_deactivation_hook()
 {
     wp_unschedule_hook('manage_multi_currency_rate_exchange');

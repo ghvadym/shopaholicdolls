@@ -244,11 +244,12 @@
 
             /* Searching product by click on search button */
             $(document).on('click', header_search_submit_selector, function() {
-                if (!$(search_input).val()) {
+                let search_val = $(search_input).val();
+                if (!search_val) {
                     return;
                 }
 
-                search_product($(search_input));
+                window.location.href = window.location.origin + '?s=' + search_val;
             });
 
 
