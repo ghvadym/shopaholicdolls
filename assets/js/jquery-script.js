@@ -81,7 +81,7 @@
 
         /* Switching tabs */
         if (is_desktop) {
-            $('.nav__tab:first-child').addClass('tab-active');
+            $('.nav__tab').first().addClass('tab-active');
             $('.nav__contents .nav__content:first-child').addClass('tab-active');
         }
 
