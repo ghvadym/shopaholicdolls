@@ -1651,3 +1651,33 @@ function custom_wc_dropdown_variation_attribute_options($args = [])
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo $html;
 }
+
+function send_mail_after_customer_registered(string $email = ''): bool
+{
+    if (!$email) {
+        return false;
+    }
+
+    $admin_email = get_bloginfo('admin_email');
+    $site_name = get_option('blogname');
+    $subject = get_field('message_subject_after_creating_account', 'options') ?: $site_name . ' - ' . __('New Account', DOMAIN);
+
+    $messageBody = get_field('message_after_creating_account', 'options');
+    $message = str_replace(
+        [
+            '[account_link]',
+        ],
+        [
+            MY_ACC_LINK
+        ],
+        $messageBody
+    );
+
+    $headers = [
+        'content-type: text/html',
+        sprintf('From: %s <%s>', $site_name, $admin_email),
+        sprintf('Reply-To: %s', $admin_email)
+    ];
+
+    return wp_mail($email, $subject, $message, $headers);
+}
