@@ -24,7 +24,8 @@ register_ajax([
     'newsletter_subscribe',
     'add_product_to_cart',
     'update_mini_cart_items_html',
-    'customer_register'
+    'customer_register',
+    'check_email'
 ]);
 
 function header_menu_brands_filter()
@@ -1412,4 +1413,45 @@ function customer_register()
     wp_send_json([
         'redirect' => wc_get_account_endpoint_url('orders')
     ]);
+}
+
+function check_email()
+{
+    check_ajax_referer('wop-nonce', 'nonce');
+
+    $data = sanitize_post($_POST);
+    $email = $data['email'] ?? '';
+
+    if (!$email) {
+        wp_send_json([
+            'error'   => true,
+            'message' => 'No data'
+        ]);
+
+        return;
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        wp_send_json([
+            'error'   => true,
+            'message' => __('Email is invalid.', DOMAIN),
+            'show'    => true
+        ]);
+
+        return;
+    }
+
+    $user = get_user_by('email', $email);
+
+    if (!empty($user->ID)) {
+        wp_send_json([
+            'error'   => true,
+            'message' => __('Email is exists. Choose other email.', DOMAIN),
+            'show'    => true
+        ]);
+
+        return;
+    }
+
+    wp_send_json_success();
 }

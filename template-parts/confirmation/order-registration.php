@@ -16,7 +16,7 @@ if (empty($email)) {
 
         <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide" style="display:none;">
             <label for="reg_email"><?php esc_html_e('Email address', DOMAIN); ?></label>
-            <input type="email" class="woocommerce-Input woocommerce-Input--text input-text" name="email" id="reg_email" autocomplete="email"
+            <input type="email" class="woocommerce-Input woocommerce-Input--text input-text check-reg-email" name="email" id="reg_email" autocomplete="email"
                    value="<?php echo esc_attr(wp_unslash($email)); ?>"><?php // @codingStandardsIgnoreLine ?>
         </p>
 

@@ -1505,6 +1505,13 @@ body:not(.woocommerce-checkout) {
     }
 }
 
+.input-error-message {
+    font-size: 14px;
+    line-height: 1;
+    color: $color-danger;
+    margin-top: 3px;
+}
+
 @include response-max($laptop-landscape) {
     .desktop_version {
         display: none !important;

@@ -716,5 +716,43 @@
             });
         }
 
+        $(document).on('change', '.check-reg-email', function () {
+            const input = $(this);
+            const val = $(this).val();
+            const error_class = 'input-error-message';
+            const error_message = $(input).parent().find('.' + error_class);
+
+            if (!val) {
+                $(error_message).empty();
+                return;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url : ajax,
+                data: {
+                    action : 'check_email',
+                    nonce  : wopajax.nonce,
+                    email  : val
+                },
+                success: function (response) {
+                    if (response.error && response.show && response.message) {
+                        if ($(error_message).length) {
+                            $(error_message).text(response.message);
+                        } else {
+                            $(`<span class="${error_class}">${response.message}</span>`).insertAfter(input);
+                        }
+                    } else {
+                        if ($(error_message).length) {
+                            $(error_message).empty();
+                        }
+                    }
+                },
+                error: function (err) {
+                    console.log('error', err);
+                }
+            });
+        });
+
     });
 })(jQuery);
