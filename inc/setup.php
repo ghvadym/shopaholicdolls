@@ -1031,3 +1031,105 @@ function theme_deactivation_hook()
     wp_unschedule_hook('manage_multi_currency_rate_exchange');
     wp_unschedule_hook('shopaholic_total_sales_products');
 }
+
+
+// Show the right stock status on WC products list for simple and variable product type.
+add_action('woocommerce_admin_stock_html', 'set_wc_products_list_stock_status', 10, 2);
+function set_wc_products_list_stock_status($stock_html, $the_product)
+{
+    // Get the variations within the variable.
+    $variations = $the_product->get_children();
+    $managing_stock = $the_product->managing_stock();
+    $stock_status = $managing_stock ? $the_product->get_stock_status() : 'outofstock';
+    $stock_html = '';
+
+    if (!empty($variations)) {
+
+        echo '<style>span[title]{position:relative;cursor:help} span[title]:active:after{position:absolute;content:attr(title);left:-10;min-width:200px;padding:12px;border:1px solid #ccc;top:-55px;color:#000000;background-color:#ffffcc;z-index:1}</style>';
+
+        $stock_html = '(';
+        foreach ($variations as $variation_id) {
+
+            $variation_product = wc_get_product($variation_id);
+
+            if (!$variation_product instanceof \WC_Product) {
+                continue;
+            }
+
+            $variation_stock = is_null($variation_product->get_stock_quantity()) ? 'X' : $variation_product->get_stock_quantity();
+            $variation_status = $variation_product->get_stock_status();
+            $style = 'color:#a44';
+
+            $variation_attributes = $variation_product->get_attributes();
+            $variation_names = [];
+
+            if ($variation_attributes) {
+                foreach ($variation_attributes as $meta_key => $meta) {
+                    $variation_key = wc_attribute_label($meta_key, $variation_product);
+                    $variation_value = $variation_product->get_attribute($meta_key);
+                    $variation_names[] = $variation_key . ' : ' . $variation_value . ' ';
+                }
+            }
+
+            switch ($variation_status) {
+                case 'instock':
+                    if (!$managing_stock) {
+                        $stock_status = 'instock';
+                    }
+                    $style = 'color:#7ad03a';
+                    break;
+                case 'onbackorder':
+                    if (!$managing_stock && 'instock' !== $stock_status) {
+                        $stock_status = 'onbackorder';
+                    }
+                    $style = 'color:#eaa600';
+                    break;
+            }
+
+            $stock_html .= sprintf('<span style="%s" title="%s">%s</span>, ', $style, implode('', $variation_names), $variation_stock);
+
+        }
+
+        $stock_html = substr($stock_html, 0, -2) . ')';
+    } else {
+        $stock_html = ' (';
+        $simple_stock = is_null($the_product->get_stock_quantity()) ? 'X' : $the_product->get_stock_quantity();
+        $simple_status = $the_product->get_stock_status();
+        $style = 'color:#a44';
+
+        switch ($simple_status) {
+            case 'instock':
+                if (!$managing_stock) {
+                    $stock_status = 'instock';
+                }
+                $style = 'color:#7ad03a';
+                break;
+            case 'onbackorder':
+                if (!$managing_stock && 'instock' !== $stock_status) {
+                    $stock_status = 'onbackorder';
+                }
+                $style = 'color:#eaa600';
+                break;
+        }
+
+        $stock_html .= sprintf('<span style="%s">%s</span>, ', $style, $simple_stock);
+
+        $stock_html = substr($stock_html, 0, -2) . ')';
+    }
+
+    switch ($stock_status) {
+        case 'instock':
+            $stock_text = esc_attr__('In stock');
+            break;
+        case 'onbackorder':
+            $stock_text = esc_attr__('On backorder');
+            break;
+        default:
+            $stock_text = esc_attr__('Out of stock');
+            break;
+    }
+
+    $stock_html = "<mark class='$stock_status'>$stock_text</mark>" . $stock_html;
+
+    return $stock_html;
+}
